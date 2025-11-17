@@ -15,6 +15,7 @@ int main()
         printf("6 - CastraçãoSolidária\n");
         printf("7 - Calcular valor final com frete\n");
         printf("8 - Brinquedos no parque de diversão\n");
+        printf("9 - Classificação no campeonato de futebol\n");
 
         scanf("%d", &interface);
         switch (interface)

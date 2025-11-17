@@ -1,0 +1,294 @@
+#include <stdio.h>
+
+// Calculadora de divisão de despesas entre estudantes
+//No C, 0 é considerado false e qualquer valor diferente de 0 é true. No caso se for 0 como argumento no if não executa o bloco.
+int validar_total(float total)
+{
+    if (total <= 0)
+    {
+        printf("ERRO: valor total inválido!\n");
+        return 1;
+    }
+    return 0;
+}
+
+int validar_consumo(float consumo)
+{
+    if (consumo < 0)
+    {
+        printf("ERRO: consumo negativo!\n");
+        return 1;
+    }
+    return 0;
+}
+
+void divisao_igual_simples()
+{
+    float total;
+
+    printf("Digite o valor total da conta: ");
+    scanf("%f", &total);
+
+    if (validar_total(total)) return;
+
+    printf("Cada estudante deve pagar: R$ %.2f\n", total / 4);
+}
+
+void divisao_proporcional_consumo(char tipo)
+{
+    float total, v1, v2, v3, v4, soma = 0;
+
+    printf("Digite o valor total da conta: ");
+    scanf("%f", &total);
+
+    if (validar_total(total)) return;
+
+    printf("Digite o %s do estudante 1: ", tipo == 'P' ? "percentual de consumo" : "peso");
+    scanf("%f", &v1);
+    if (validar_consumo(v1)) return;
+
+    printf("Digite o %s do estudante 2: ", tipo == 'P' ? "percentual de consumo" : "peso");
+    scanf("%f", &v2);
+    if (validar_consumo(v2)) return;
+
+    printf("Digite o %s do estudante 3: ", tipo == 'P' ? "percentual de consumo" : "peso");
+    scanf("%f", &v3);
+    if (validar_consumo(v3)) return;
+
+    printf("Digite o %s do estudante 4: ", tipo == 'P' ? "percentual de consumo" : "peso");
+    scanf("%f", &v4);
+    if (validar_consumo(v4)) return;
+
+    soma = v1 + v2 + v3 + v4;
+
+    if (soma <= 0)
+    {
+        printf("ERRO: soma dos valores inválida!\n");
+        return;
+    }
+
+    printf("Estudante 1 paga: R$ %.2f\n", total * (v1 / soma));
+    printf("Estudante 2 paga: R$ %.2f\n", total * (v2 / soma));
+    printf("Estudante 3 paga: R$ %.2f\n", total * (v3 / soma));
+    printf("Estudante 4 paga: R$ %.2f\n", total * (v4 / soma));
+}
+
+char menu_divisao_despesas()
+{
+    char op_Interface_divisao_despesas;
+
+    printf("\n=======================================\n");
+    printf("Escolha o tipo de divisão de despesas que deseja executar:\n");
+    printf("D - Divisão Igual Simples\n");
+    printf("P - Divisão Proporcional ao Consumo\n");
+    printf("R - Rateio com Pesos Diferentes\n");
+    scanf(" %c", &op_Interface_divisao_despesas);
+
+    return op_Interface_divisao_despesas;
+}
+
+// Calculadora de custos de viagem
+void custo_viagem()
+{
+    float litros, preco, custo;
+
+    printf("Digite os litros consumidos: ");
+    scanf("%f", &litros);
+    printf("Digite o preço por litro: ");
+    scanf("%f", &preco);
+
+    custo = litros * preco;
+
+    printf("Custo da viagem: R$ %.2f\n", custo);
+}
+
+void consumo_medio()
+{
+    float distancia, litros, consumo;
+
+    printf("Digite a distância percorrida (km): ");
+    scanf("%f", &distancia);
+    printf("Digite os litros consumidos: ");
+    scanf("%f", &litros);
+
+    consumo = distancia / litros;
+
+    printf("Consumo médio: %.2f km/l\n", consumo);
+}
+
+void autonomia_estimada(tanque)
+{
+    float consumo_medio, autonomia;
+
+    printf("Digite o consumo médio do veículo (km/l): ");
+    scanf("%f", &consumo_medio);
+
+    autonomia = tanque * consumo_medio;
+
+    printf("Autonomia estimada: %.2f km\n", autonomia);
+}
+
+void custo_por_km()
+{
+    float custo_total, distancia, custo_km;
+
+    printf("Digite o custo total da viagem: ");
+    scanf("%f", &custo_total);
+    printf("Digite a distância percorrida (km): ");
+    scanf("%f", &distancia);
+
+    custo_km = custo_total / distancia;
+
+    printf("Custo por quilômetro: R$ %.2f/km\n", custo_km);
+}
+
+char menu_bustuor()
+{
+    char op_Interface_BusTour;
+
+    printf("\n=======================================\n");
+    printf("Escolha o tipo de cálculo que deseja executar:\n");
+    printf("C - Custo da viagem\n");
+    printf("M - Consumo médio\n");
+    printf("A - Autonomia estimada\n");
+    printf("Q - Custo por quilômetro\n");
+    scanf(" %c", &op_Interface_BusTour);
+
+    return op_Interface_BusTour;
+}
+
+// Conversor de unidades
+void conversorKG_to_Libras()
+{
+    float valorKG, resultadoLibras;
+
+    printf("Digite o valor em Quilogramas: ");
+    scanf("%f", &valorKG);
+
+    resultadoLibras = valorKG * 2.20462;
+
+    printf("O valor em Libras é: %.2f\n", resultadoLibras);
+}
+
+void conversorM_to_KM(int opcao)
+{
+    float valor, resultado;
+
+    if (opcao == 1)
+    {
+        printf("Digite o valor em Quilômetros: ");
+        scanf("%f", &valor);
+        resultado = valor * 0.621371;
+        printf("O valor em Milhas é: %.2f\n", resultado);
+    }
+    else
+    {
+        printf("Digite o valor em Milhas: ");
+        scanf("%f", &valor);
+        resultado = valor / 0.621371;
+        printf("O valor em Quilômetros é: %.2f\n", resultado);
+    }
+}
+
+void conversorM_to_Pes()
+{
+    float valorMetros, resultadoPes;
+    printf("Digite o valor em Metros: ");
+    scanf("%f", &valorMetros);
+
+    resultadoPes = valorMetros * 3.28084;
+
+    printf("O valor em Pés é: %.2f\n", resultadoPes);
+}
+
+char menu_conversor()
+{
+    char op_Interface_Conversor;
+
+    printf("\n=======================================\n");
+    printf("Escolha a atividade que deseja executar:\n");
+    printf("K - Quilômetros para Milhas\n");
+    printf("M - Milhas para Quilômetros\n");
+    printf("Q - Quilogramas para Libras\n");
+    printf("P - Metros para Pés\n");
+    scanf(" %c", &op_Interface_Conversor);
+
+    return op_Interface_Conversor;
+}
+
+// Menu principal
+int menu_main()
+{
+    int interface;
+    printf("\n=======================================\n");
+    printf("Escolha a atividade que deseja executar:\n");
+    printf("1 - Conversor de unidades\n");
+    printf("2 - BusTour\n");
+
+    scanf("%d", &interface);
+    return interface;
+}
+
+int main()
+{
+    while (1)
+    {
+        int interface = menu_main();
+
+        switch (interface)
+        {
+        case 1:
+            /*Um funcionário recebe um pedido com uma medida referente a um sistema métrico e precisa converter para outro sistema métrico. Ele precisa de um programa em C que permita ler o quantitativo em uma medida e escolher o tipo de conversão necessária. São disponibilizadas as conversões: (1) Quilômetros para Milhas (K), considerando que 1 km = 0.621371 milhas; (2) Milhas para Quilômetros (M), o inverso da conversão anterior, (3) Quilogramas para Libras (Q), sendo que 1 kg = 2.20462 libras e (4) Metros para Pés (P): sendo 1 metro = 3.28084 pés.*/
+            char op_Interface_Conversor = menu_conversor();
+
+            switch (op_Interface_Conversor)
+            {
+            case 'K': conversorM_to_KM(1); break;
+            case 'M': conversorM_to_KM(2); break;
+            case 'Q': conversorKG_to_Libras(); break;
+            case 'P': conversorM_to_Pes(); break;
+            default: printf("Opção inválida.\n"); break;
+            }
+            break;
+
+        case 2:
+            /*O gestor da frota da empresa “BusTour” recebe 3 dados das viagens:
+            (1) pode ser distância (km), litros consumidos, ou valor gasto e
+            (2) pode ser litros consumidos, preço do combustível, ou distância e
+            (3) tipo de cálculo, atravé de menu com 4 opções:
+                (C) custo da viagem - litros consumidos  preço por litro;
+                (M) consumo médio - distância percorrida  litros consumidos
+                (A) autonomia estimada (quantos km ainda podem ser percorridos) litros no tanque × consumo médio do veículo
+                (Q) custo por quilômetro - custo total da viagem ÷ distância percorrida.
+            Criar programa em C para atender esta demanda, usando switch-case e módulos. Manter o total de litros do tanque numa constante.*/
+            const float tanque = 50.0;
+            char op_Interface_BusTour = menu_bustuor();
+
+            switch (op_Interface_BusTour)
+            {
+            case 'C': custo_viagem(); break;
+            case 'M': consumo_medio(); break;
+            case 'A': autonomia_estimada(tanque); break;
+            case 'Q': custo_por_km(); break;
+            default: printf("Opção inválida.\n"); break;
+            }
+            break;
+
+        case 3:
+            /*Quatro estudantes compartilham apartamento e precisam calcular como dividir as despesas mensais de forma justa. Eles consideram 3 possibilidades: (1) Divisão Igual Simples (D), dados valor total da conta; (2) Divisão Proporciona ao Consumo (P), dados: valor total da conta, percentual de consumo de cada estudante e (3) Rateio com Pesos Diferentes (R), dados pesos de consumo de cada estudante. Criar programa em C para atender esta demanda, usando switch-case e módulos e validar (emitir mensagem de ERRO) em: tentativa de divisão por 0, consumo negativo, soma dos pesos negativa ou 0.*/
+            char op_Interface_divisão_despesas = menu_divisao_despesas();
+            switch (op_Interface_divisão_despesas)
+            {
+            case 'D': divisao_igual_simples(); break;
+            //divisao_proporcional_consumo foi feito usando os pesos ou percentuais, então pode ser usado para os dois casos
+            case 'P': divisao_proporcional_consumo('P'); break;
+            case 'R': divisao_proporcional_consumo('R'); break;
+            default: printf("Opção inválida.\n"); break;
+            }
+        default:
+            printf("Opção inválida.\n");
+            break;
+        }
+    }
+    return 0;
+}
